@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why the Fossil Record Screams "Global Flood" | I DID NOT EVOLVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* FULL PROFESSIONAL STYLE – NAV FIXED, CARDS PERFECT */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.7;
+    backdrop-filter: blur(15px);
+}
+
+/* NAVIGATION – FIXED: HORIZONTAL, NO BULLETS, CLEAN GOLD */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    padding: 20px 40px 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #c19a6b;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;  /* ← FIX: NO BULLETS */
+    display: flex;
+    gap: 40px;         /* ← FIX: HORIZONTAL SPACING */
+}
+
+.nav-links li {
+    display: inline-block;  /* ← FIX: HORIZONTAL LAYOUT */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c19a6b;
+}
+
+/* HAMBURGER & MOBILE MENU */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 4px;
+    background: #c19a6b;
+    border-radius: 5px;
+    transition: all 0.4s;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #000;
+    padding: 100px 40px;
+    transition: right 0.5s;
+    z-index: 999;
+}
+
+.mobile-menu a {
+    display: block;
+    color: white;
+    font-size: 1.8rem;
+    margin: 25px 0;
+    text-decoration: none;
+}
+
+.mobile-menu.active { right: 0; }
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+/* Mobile Switch */
+@media (max-width: 868px) {
+    .desktop-links { display: none; }
+    .hamburger { display: flex; }
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    min-height: 680px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3') center/cover;
+    opacity: 0.15;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.header-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 900;
+    letter-spacing: 18px;
+    color: #c19a6b;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.header-content p {
+    font-size: 1.65rem;
+    color: #e0e0e0;
+    margin-bottom: 50px;
+}
+
+/* BUTTONS */
+.cta-buttons a {
+    padding: 18px 48px;
+    margin: 0 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    display: inline-block;
+    transition: 0.4s;
+}
+
+.btn-primary { background: #c19a6b; color: #000; }
+.btn-primary:hover { background: #d4af37; transform: translateY(-5px); }
+.btn-secondary { background: transparent; color: white; border: 3px solid #c19a6b; }
+.btn-secondary:hover { background: #c19a6b; color: #000; }
+
+/* WHAT WE DO CARDS */
+.services {
+    padding: 140px 40px 100px;
+    background: #111;
+    text-align: center;
+}
+
+.services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: #c19a6b;
+    margin-bottom: 90px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 50px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 50px 30px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    transition: all 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    border-color: #c19a6b;
+    box-shadow: 0 25px 50px rgba(193,154,107,0.15);
+}
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+/* Mobile Hero Adjust */
+@media (max-width: 768px) {
+    .header-content h1 { font-size: 4.5rem; letter-spacing: 8px; }
+    .header-content p { font-size: 1.3rem; }
+    .cta-buttons a { margin: 10px 0; display: block; }
+}
+.card-link {
+    text-decoration: none;
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-link:hover .card {
+    transform: translateY(-20px);
+    box-shadow: 0 30px 60px rgba(193,154,107,0.3);
+}
+/* GOLD FOOTER */
+.footer {
+    background: #000;
+    color: #aaa;
+    text-align: center;
+    padding: 100px 40px 60px;
+    border-top: 1px solid #333;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #c19a6b;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.social-links a:hover { color: #fff; }
+
+.credit {
+    margin-top: 50px;
+    font-size: 1rem;
+    color: #777;
+}
+
+.credit a {
+    color: #c19a6b;
+    text-decoration: none;
+}
+
+.credit a:hover { text-decoration: underline; }
+/* FINAL FOOTER – LEFT/RIGHT + CENTERED BOTTOM */
+.footer {
+    background: #000;
+    color: #aaa;
+    padding: 100px 40px 60px;
+    border-top: 1px solid #222;
+    margin-top: 100px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto 60px;
+    text-align: left;
+}
+
+.footer-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+.join-team {
+    margin-top: 30px;
+    font-size: 1.1rem;
+}
+
+.join-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: #c19a6b;
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.join-btn:hover { background: #d4af37; }
+
+.footer-right .contact-item {
+    margin: 12px 0;
+    font-size: 1.1rem;
+}
+
+.footer-right a {
+    color: #c19a6b;
+    text-decoration: none;
+}
+
+.footer-right a:hover { text-decoration: underline; }
+
+.socials a {
+    margin: 0 15px;
+    font-size: 1.4rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid #222;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.footer-bottom a {
+    color: #c19a6b;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover { text-decoration: underline; }
+
+/* Mobile */
+@media (max-width: 868px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-left, .footer-right { text-align: center; }
+}
+/* LATEST UPDATES SECTION – DAILY CONTENT */
+.latest-updates {
+    padding: 120px 40px;
+    background: #0a0a0a;
+    text-align: center;
+}
+
+.latest-updates h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 1.4rem;
+    color: #aaa;
+    margin-bottom: 80px;
+}
+
+.updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.update-card {
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s;
+    border: 1px solid #333;
+}
+
+.update-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(193,154,107,0.2);
+}
+
+.update-image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.update-content {
+    padding: 30px;
+    text-align: left;
+}
+
+.tag {
+    background: #c19a6b;
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.tag.podcast { background: #8b4513; }
+.tag.debate { background: #b8860b; }
+
+.update-content h3 {
+    font-size: 1.6rem;
+    color: white;
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.date {
+    color: #c19a6b;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    color: #c19a6b;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.read-more:hover { text-decoration: underline; }
+
+.view-all {
+    margin-top: 80px;
+}
+
+.large { padding: 20px 60px; font-size: 1.4rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar"> <!-- same nav --> 
+        <div class="logo">I DID NOT EVOLVE</div>
+        <ul class="nav-links desktop-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../podcast.html">Podcast</a></li>
+            <li><a href="../resources.html">Resources</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu">...</div> <!-- copy from index if needed -->
+
+    <article class="single-article">
+        <div class="article-hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?ixlib=rb-4.0.3') center/cover;">
+            <h1>ORGANIZED COMPLEXITY DOES NOT COME ABOUT BY ACCIDENT</h1>
+            <p class="article-meta">By Wealthy Emeseh • December 12, 2025 • 3 min read</p>
+        </div>
+          <div class="article-content">
+            <p>Picture a wall of light bulbs. At first they simply blink, nothing more than flashes of light. But suddenly the pattern changes. Dot dot dot, dash dash dash, dot dot dot. It is Morse code for SOS. That is not chaos. That is communication. That is functional, organized complexity carrying meaning and purpose. No one sees that pattern and shrugs, thinking it just happened. The moment the randomness becomes a message, you know a mind is behind it.
+Now imagine those same lights flickering with no rhythm or structure. Nothing but noise. No message. No purpose. Just random flashes going nowhere. You would never call that communication. You would never assume intelligence. You would instantly know it was meaningless and undirected. That is the difference between randomness and design.
+Inside every cell of your body is something far more astonishing than blinking lights. A ribosome. A microscopic biomolecular machine that reads genetic instructions and assembles proteins with precision. It follows a code. It obeys instructions. It builds structures, enzymes, tissues, and ultimately you. This machine does not spit out random junk. It produces exactly what the coded information tells it to produce, one protein after another with intention, order, and purpose.
+This is why Dr. James Tour, one of the most accomplished synthetic chemists on earth, asks a direct question the scientific world cannot answer: How did this begin without a mind? He has spent decades working on molecular machines, and his verdict is blunt. Abiogenesis is not just unlikely. It is chemically impossible. You cannot get a functional ribosome by chance. You cannot get the coded instructions by chance. You cannot even get the basic building blocks assembled in the right way. The chemistry fights against it at every step.
+Order and instruction do not rise out of chaos. They come from intelligence. Life is not just complexity. It is meaningful, functional, specific, code-driven complexity. Like blinking lights that deliver a message. Like machinery that follows a blueprint. Like a Designer whose fingerprints cover everything He made.
+A code requires a code writer. Design demands a Designer.</p>
+
+            <a href="../index.html" class="back-home">← Back to Home</a>
+        </div>
+    </article>
+-->
+    <footer class="footer">
+        <!-- Your full footer code here -->
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+<!-- FINAL POWERFUL FOOTER – LEFT / RIGHT + CENTERED -->
+<footer class="footer">
+    <div class="footer-grid">
+
+        <!-- LEFT SIDE -->
+        <div class="footer-left">
+            <h3>I DID NOT EVOLVE</h3>
+            <p>Defending biblical creation with science, logic & Scripture.<br>
+            Equipping Nigerian believers to stand unshakeable on Genesis 1–11.</p>
+
+            <div class="join-team">
+                <strong>🔥 Join Our Team</strong><br>
+                Become a campus rep, speaker, writer or supporter.<br>
+                <a href="join.html" class="join-btn">Apply Now →</a>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE – CONTACT & SOCIALS -->
+        <div class="footer-right">
+            <div class="contact-item">📧 <a href="mailto:info@ididnotevolve.com">info@ididnotevolve.com</a></div>
+            <div class="contact-item">📱 <a href="https://wa.me/2348100000000" target="_blank">+234 810 000 0000</a></div>
+            <div class="contact-item">🌍 Port Harcourt, Rivers State, Nigeria</div>
+
+            <div class="socials">
+                <a href="#" target="_blank">📸 Instagram</a>
+                <a href="#" target="_blank">▶️ YouTube</a>
+                <a href="#" target="_blank">💬 WhatsApp</a>
+                <a href="#" target="_blank">✈️ Telegram</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CENTERED BOTTOM CREDIT -->
+    <div class="footer-bottom">
+        © 2025 I DID NOT EVOLVE
+        <strong>Powered by <a href="https://wealthywebsolutions.com" target="_blank">Wealthy Web Solutions</a></strong>
+    </div>
+</footer>
+   <script src>// js/main.js
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+// Toggle menu
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+});
+
+// Close when clicking a link
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+    });
+});
+
+// Close when clicking outside the menu
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+    }
+});</script>
+</body>
+</html>

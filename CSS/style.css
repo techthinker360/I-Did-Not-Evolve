@@ -1,0 +1,472 @@
+/* I DID NOT EVOLVE – FINAL HARMONISED POWERFUL STYLE 2025 */
+/* Everything works: left menu, slideshow, floating words, cards, updates, footer */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding-top: 90px; /* prevents nav overlap */
+}
+
+/* ==================== NAVIGATION & LEFT SLIDING MENU ==================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    color: #c19a6b;
+    font-weight: 700;
+}
+
+.nav-links.desktop-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: #c19a6b; }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 32px;
+    height: 4px;
+    background: #c19a6b;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+/* Left Sliding Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 320px;
+    height: 100vh;
+    background: #000;
+    z-index: 2000;
+    transition: left 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+    padding: 30px;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+}
+
+.side-menu.active { left: 0; }
+
+.side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+    color: #c19a6b;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+}
+
+.close-btn {
+    font-size: 3rem;
+    cursor: pointer;
+    color: #c19a6b;
+}
+
+.side-links a {
+    display: block;
+    color: white;
+    font-size: 1.6rem;
+    margin: 28px 0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.side-links a:hover, .side-links a.highlight { color: #c19a6b; }
+
+.menu-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+@media (max-width: 868px) {
+    .desktop-links { display: none; }
+    .hamburger { display: flex; }
+}
+
+/* ==================== HERO ==================== */
+.hero {
+    height: 100vh;
+    min-height: 680px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3') center/cover;
+    opacity: 0.15;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.header-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 8.5rem;
+    font-weight: 900;
+    letter-spacing: 20px;
+    color: #c19a6b;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.header-content p {
+    font-size: 1.7rem;
+    margin-bottom: 60px;
+    color: #e0e0e0;
+}
+
+.cta-buttons a {
+    padding: 18px 50px;
+    margin: 0 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: 0.4s;
+}
+
+.btn-primary { background: #c19a6b; color: #000; }
+.btn-primary:hover { background: #d4af37; transform: translateY(-6px); }
+.btn-secondary { background: transparent; color: white; border: 3px solid #c19a6b; }
+.btn-secondary:hover { background: #c19a6b; color: #000; }
+
+/* ==================== SERVICES CARDS (CLICKABLE) ==================== */
+.services {
+    padding: 140px 40px;
+    background: #0f0f0f;
+    text-align: center;
+}
+
+.services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: #c19a6b;
+    margin-bottom: 90px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 50px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.card-link {
+    text-decoration: none;
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card {
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), var(--bg-image, #111) center/cover;
+    padding: 60px 30px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    transition: all 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    border-color: #c19a6b;
+    box-shadow: 0 30px 60px rgba(193,154,107,0.3);
+}
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+/* ==================== LATEST UPDATES ==================== */
+.latest-updates {
+    padding: 120px 40px;
+    background: #0a0a0a;
+    text-align: center;
+}
+
+.latest-updates h2 {
+    font-size: 4.5rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 1.4rem;
+    color: #aaa;
+    margin-bottom: 80px;
+}
+
+.updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.update-card {
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: 0.4s;
+}
+
+.update-card:hover { transform: translateY(-15px); }
+
+.update-image {
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+}
+
+.update-content {
+    padding: 30px;
+    text-align: left;
+}
+
+.tag {
+    background: #c19a6b;
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.tag.podcast { background: #8b4513; }
+.tag.debate { background: #b8860b; }
+
+.update-content h3 {
+    font-size: 1.7rem;
+    color: white;
+    margin: 15px 0;
+}
+
+.date { color: #c19a6b; margin-bottom: 12px; }
+
+.read-more {
+    color: #c19a6b;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.read-more:hover { text-decoration: underline; }
+
+.view-all { margin-top: 80px; }
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: #000;
+    padding: 100px 40px 60px;
+    border-top: 1px solid #222;
+    margin-top: 100px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto 60px;
+    text-align: left;
+}
+
+.footer-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #c19a6b;
+    margin-bottom: 20px;
+}
+
+.join-team {
+    margin-top: 30px;
+}
+
+.join-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: #c19a6b;
+    color: #000;
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-right a { color: #c19a6b; text-decoration: none; }
+.footer-right a:hover { text-decoration: underline; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid #222;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.footer-bottom a { color: #c19a6b; text-decoration: none; }
+
+/* Mobile Adjustments */
+@media (max-width: 868px) {
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .header-content h1 { font-size: 4.8rem; letter-spacing: 10px; }
+    .cta-buttons a { display: block; margin: 15px 0; }
+}
+
+/* SUBTLE CREATION BACKGROUND SLIDESHOW + FLOATING WORDS */
+.bg-slideshow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: slideshow 60s infinite;
+}
+
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 12s; }
+.slide:nth-child(3) { animation-delay: 24s; }
+.slide:nth-child(4) { animation-delay: 36s; }
+.slide:nth-child(5) { animation-delay: 48s; }
+
+@keyframes slideshow {
+    0%, 16% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+    96%, 100% { opacity: 0; }
+}
+
+/* Floating biblical words */
+.floating-words {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-words span {
+    position: absolute;
+    color: rgba(193,154,107,0.15);
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: floatWords 45s 
+
+infinite linear;
+}
+
+.floating-words span:nth-child(1) { top: 20%; left: -100%; animation-delay: 0s; }
+.floating-words span:nth-child(2) { top: 40%; left: -100%; animation-delay: 9s; }
+.floating-words span:nth-child(3) { top: 55%; left: -100%; animation-delay: 18s; font-size: 6rem; color: rgba(193,154,107,0.25); }
+.floating-words span:nth-child(4) { top: 70%; left: -100%; animation-delay: 27s; }
+.floating-words span:nth-child(5) { top: 30%; left: -100%; animation-delay: 36s; }
+
+@keyframes floatWords {
+    0% { transform: translateX(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100vw); opacity: 0; }
+}
+
+/* Mobile – reduce animation intensity */
+@media (max-width: 768px) {
+    .floating-words span { font-size: 2.5rem; }
+}
+.socials {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.socials a {
+    transition: transform 0.3s;
+}
+
+.socials a:hover {
+    transform: translateY(-5px);
+}
+
+.socials svg {
+    transition: fill 0.3s;
+}
+
+.socials a:hover svg {
+    fill: #fff;
+}
