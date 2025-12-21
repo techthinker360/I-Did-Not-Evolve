@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I DID NOT EVOLVE | Created. Not Evolved.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* I DID NOT EVOLVE – FINAL POWERFUL 2025 STYLE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ==================== GLOBAL SETTINGS ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Open Sans', sans-serif;
             background: #0a0a0a;
             color: #e0e0e0;
             line-height: 1.7;
-            padding-top: 90px; /* prevents nav overlap */
+            overflow-x: hidden;
         }
-        /* ==================== NAVIGATION & LEFT SLIDING MENU ==================== */
+
+        /* ==================== NAVIGATION & SIDE MENU ==================== */
         .navbar {
             position: fixed;
             top: 0;
@@ -31,306 +28,289 @@
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1a1a1a;
         }
+
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.3rem;
+            font-size: clamp(1.4rem, 4vw, 2.3rem);
             color: #c19a6b;
             font-weight: 700;
         }
+
         .nav-links.desktop-links {
             list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 30px;
         }
+
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         .nav-links a:hover { color: #c19a6b; }
+
         .hamburger {
             display: none;
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
         }
+
         .hamburger span {
-            width: 32px;
-            height: 4px;
+            width: 30px;
+            height: 3px;
             background: #c19a6b;
             border-radius: 5px;
             transition: 0.4s;
         }
-        /* Left Sliding Menu */
+
+        /* Side Menu Logic */
         .side-menu {
             position: fixed;
             top: 0;
-            left: -320px;
+            left: -100%;
             width: 320px;
             height: 100vh;
             background: #000;
-            z-index: 2000;
-            transition: left 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-            padding: 30px;
+            z-index: 2001;
+            transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+            padding: 40px;
             box-shadow: 10px 0 30px rgba(0,0,0,0.8);
         }
+
         .side-menu.active { left: 0; }
+
         .side-menu-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 70px;
-            color: #c19a6b;
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            margin-bottom: 50px;
         }
-        .close-btn {
-            font-size: 3rem;
-            cursor: pointer;
-            color: #c19a6b;
-        }
+
+        .close-btn { font-size: 2.5rem; cursor: pointer; color: #c19a6b; line-height: 1; }
+
+        .side-links { list-style: none; }
         .side-links a {
             display: block;
             color: white;
-            font-size: 1.6rem;
-            margin: 28px 0;
+            font-size: 1.4rem;
+            margin: 25px 0;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
         }
-        .side-links a:hover, .side-links a.highlight { color: #c19a6b; }
+
+        .side-links a.highlight { color: #c19a6b; border-top: 1px solid #222; pt: 20px; }
+
         .menu-overlay {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             background: rgba(0,0,0,0.8);
-            z-index: 1500;
+            z-index: 2000;
             opacity: 0;
             visibility: hidden;
-            transition: 0.5s;
+            transition: 0.4s;
         }
+
         .menu-overlay.active { opacity: 1; visibility: visible; }
-        /* RESPONSIVE – MOBILE NAV */
-        @media (max-width: 868px) {
-            .desktop-links { display: none; }
-            .hamburger { display: flex; }
-        }
-        /* ==================== HERO ==================== */
+
+        /* ==================== HERO SECTION ==================== */
         .hero {
             height: 100vh;
-            min-height: 680px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
+            background: #0a0a0a;
         }
+
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3') center/cover;
-            opacity: 0.15;
+            opacity: 0.2;
         }
-        .header-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 20px;
-        }
+
+        .header-content { position: relative; z-index: 2; padding: 20px; width: 100%; }
+
         .header-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 8.5rem;
+            font-size: clamp(2.5rem, 10vw, 7rem);
             font-weight: 900;
-            letter-spacing: 20px;
+            letter-spacing: clamp(5px, 2vw, 20px);
             color: #c19a6b;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
+
         .header-content p {
-            font-size: 1.7rem;
-            margin-bottom: 60px;
-            color: #e0e0e0;
+            font-size: clamp(1rem, 3vw, 1.6rem);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
+
         .cta-buttons a {
-            padding: 18px 50px;
-            margin: 0 15px;
-            font-size: 1.3rem;
+            display: inline-block;
+            padding: 16px 40px;
+            margin: 10px;
+            font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
             transition: 0.4s;
         }
-        .btn-primary { background: #c19a6b; color: #000; }
-        .btn-primary:hover { background: #d4af37; transform: translateY(-6px); }
-        .btn-secondary { background: transparent; color: white; border: 3px solid #c19a6b; }
+
+        .btn-primary { background: #c19a6b; color: #000; border: 2px solid #c19a6b; }
+        .btn-primary:hover { transform: translateY(-5px); background: #d4af37; }
+        .btn-secondary { background: transparent; color: #fff; border: 2px solid #c19a6b; }
         .btn-secondary:hover { background: #c19a6b; color: #000; }
-        /* ==================== SERVICES CARDS (CLICKABLE) ==================== */
-        .services {
-            padding: 140px 40px;
-            background: #0f0f0f;
-            text-align: center;
-        }
+
+        /* ==================== SERVICES GRID ==================== */
+        .services { padding: 100px 20px; background: #0f0f0f; text-align: center; }
         .services h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             color: #c19a6b;
-            margin-bottom: 90px;
+            margin-bottom: 60px;
         }
+
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 50px;
-            max-width: 1500px;
-            margin: 0 auto;
-        }
-        .card-link {
-            text-decoration: none;
-            display: block;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-        .card {
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), var(--bg-image, #111) center/cover;
-            padding: 60px 30px;
-            border-radius: 20px;
-            border: 1px solid #333;
-            transition: all 0.4s;
-        }
-        .card:hover {
-            transform: translateY(-20px);
-            border-color: #c19a6b;
-            box-shadow: 0 30px 60px rgba(193,154,107,0.3);
-        }
-        .card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: #c19a6b;
-            margin-bottom: 20px;
-        }
-        /* ==================== LATEST UPDATES ==================== */
-        .latest-updates {
-            padding: 120px 40px;
-            background: #0a0a0a;
-            text-align: center;
-        }
-        .latest-updates h2 {
-            font-size: 4.5rem;
-            color: #c19a6b;
-            margin-bottom: 20px;
-        }
-        .section-subtitle {
-            font-size: 1.4rem;
-            color: #aaa;
-            margin-bottom: 80px;
-        }
-        .updates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
+
+        .card-link { text-decoration: none; color: inherit; }
+
+        .card {
+            height: 350px;
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #c19a6b;
+            box-shadow: 0 20px 40px rgba(193,154,107,0.2);
+        }
+
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #c19a6b; margin-bottom: 10px; z-index: 2; }
+        .card p { font-size: 1rem; color: #ddd; z-index: 2; }
+
+        /* ==================== UPDATES SECTION ==================== */
+        .latest-updates { padding: 100px 20px; background: #0a0a0a; text-align: center; }
+        .latest-updates h2 { font-size: clamp(2rem, 5vw, 4rem); color: #c19a6b; margin-bottom: 10px; }
+        .section-subtitle { margin-bottom: 60px; color: #888; }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
         .update-card {
             background: #111;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid #333;
-            transition: 0.4s;
-        }
-        .update-card:hover { transform: translateY(-15px); }
-        .update-image {
-            height: 240px;
-            background-size: cover;
-            background-position: center;
-        }
-        .update-content {
-            padding: 30px;
+            border: 1px solid #222;
             text-align: left;
+            transition: 0.3s;
         }
+
+        .update-card:hover { transform: translateY(-5px); border-color: #333; }
+
+        .update-image { height: 200px; background-size: cover; background-position: center; }
+
+        .update-content { padding: 25px; }
+
         .tag {
+            display: inline-block;
             background: #c19a6b;
             color: #000;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
             font-weight: 700;
+            margin-bottom: 15px;
         }
-        .tag.podcast { background: #8b4513; }
-        .tag.debate { background: #b8860b; }
-        .update-content h3 {
-            font-size: 1.7rem;
-            color: white;
-            margin: 15px 0;
-        }
-        .date { color: #c19a6b; margin-bottom: 12px; }
-        .read-more {
-            color: #c19a6b;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .read-more:hover { text-decoration: underline; }
-        .view-all { margin-top: 80px; }
+
+        .update-content h3 { font-size: 1.4rem; margin-bottom: 10px; color: #fff; line-height: 1.4; }
+        .date { color: #c19a6b; font-size: 0.9rem; margin-bottom: 10px; }
+        .read-more { color: #c19a6b; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+
+        .view-all { margin-top: 60px; }
+
         /* ==================== FOOTER ==================== */
-        .footer {
-            background: #000;
-            padding: 100px 40px 60px;
-            border-top: 1px solid #222;
-            margin-top: 100px;
-        }
+        .footer { padding: 80px 20px 40px; background: #000; border-top: 1px solid #1a1a1a; margin-top: 60px; }
         .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1300px;
-            margin: 0 auto 60px;
-            text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            padding-bottom: 40px;
         }
-        .footer-left h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #c19a6b;
-            margin-bottom: 20px;
-        }
-        .join-team {
-            margin-top: 30px;
-        }
+
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; }
         .join-btn {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 20px;
             background: #c19a6b;
             color: #000;
-            padding: 14px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
         }
-        .footer-right a { color: #c19a6b; text-decoration: none; }
-        .footer-right a:hover { text-decoration: underline; }
+
+        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
+        .footer-right a:hover { color: #c19a6b; }
+        .socials { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid #222;
-            color: #666;
-            font-size: 0.95rem;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 30px;
+            font-size: 0.9rem;
+            color: #555;
         }
-        .footer-bottom a { color: #c19a6b; text-decoration: none; }
-        /* Mobile Adjustments */
+
+        /* ==================== MOBILE ADJUSTMENTS ==================== */
         @media (max-width: 868px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .header-content h1 { font-size: 4.8rem; letter-spacing: 10px; }
-            .cta-buttons a { display: block; margin: 15px 0; }
+            .navbar { padding: 15px 20px; }
+            .desktop-links { display: none; }
+            .hamburger { display: flex; }
+            .hero { min-height: 500px; }
+            .cta-buttons a { width: 100%; margin: 5px 0; }
         }
-        
     </style>
 </head>
 <body>
 
-    <!-- PERFECT RESPONSIVE NAVIGATION -->
     <nav class="navbar">
         <div class="logo">I DID NOT EVOLVE</div>
         <ul class="nav-links desktop-links">
@@ -340,18 +320,17 @@
             <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="hamburger">
+        <div class="hamburger" id="openMenu">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <!-- LEFT SLIDING MENU (MOBILE) -->
-    <div class="side-menu">
+    <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <div class="logo">I DID NOT EVOLVE</div>
-            <div class="close-btn">&times;</div>
+            <div class="logo" style="font-size: 1.4rem;">I DID NOT EVOLVE</div>
+            <div class="close-btn" id="closeMenu">&times;</div>
         </div>
         <ul class="side-links">
             <li><a href="index.html">Home</a></li>
@@ -359,13 +338,11 @@
             <li><a href="podcast.html">Podcast</a></li>
             <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="join.html" class="highlight">Join The Team</a></li>
+            <li><a href="join.html" class="highlight">Join The Team →</a></li>
         </ul>
     </div>
+    <div class="menu-overlay" id="overlay"></div>
 
-    <div class="menu-overlay"></div>
-
-    <!-- HERO SECTION -->
     <header class="hero">
         <div class="header-content">
             <h1>I DID NOT EVOLVE</h1>
@@ -377,139 +354,130 @@
         </div>
     </header>
 
-    <!-- WHAT WE DO – CLICKABLE CARDS WITH BACKGROUND IMAGES -->
     <section class="services">
         <h2>What We Do</h2>
         <div class="cards">
             <a href="podcast.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&q=85') center/cover;">
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&q=85') center/cover;">
                     <h3>Weekly Podcast</h3>
-                    <p>Every Saturday: short, hard-hitting episodes destroying evolutionary myths with evidence.</p>
+                    <p>Short, hard-hitting episodes destroying evolutionary myths with evidence.</p>
                 </div>
             </a>
             <a href="debates.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
-                    <h3>Live Debates & Webinars</h3>
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
+                    <h3>Live Debates</h3>
                     <p>Respectful but unrelenting public defenses of biblical creation.</p>
                 </div>
             </a>
             <a href="resources.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Articles & Resources</h3>
-                    <p>Infographics, booklets, and in-depth articles you can download and share.</p>
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&q=85') center/cover;">
+                    <h3>Resources</h3>
+                    <p>Infographics, booklets, and articles you can download and share.</p>
                 </div>
             </a>
             <a href="campus.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
                     <h3>Campus Tours</h3>
-                    <p>Open-mic debates & Q&A in universities and secondary schools across Nigeria.</p>
+                    <p>Open-mic debates & Q&A in universities across Nigeria.</p>
                 </div>
             </a>
             <a href="training.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Training Apologists</h3>
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&q=85') center/cover;">
+                    <h3>Training</h3>
                     <p>Raising the next generation of bold Nigerian defenders of the faith.</p>
                 </div>
             </a>
             <a href="join.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=85') center/cover;">
+                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=85') center/cover;">
                     <h3>Join The Team</h3>
-                    <p>Join the next set of changemakers.</p>
+                    <p>Join the next set of changemakers defending the truth.</p>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- LATEST UPDATES SECTION – THIS MAKES THE SITE "BULKY" & DAILY FRESH -->
     <section class="latest-updates">
-        <h2>Latest from I DID NOT EVOLVE</h2>
-        <p class="section-subtitle">New articles, podcast episodes, debate highlights & campus reports — updated daily</p>
+        <h2>Latest Updates</h2>
+        <p class="section-subtitle">Fresh insights, media, and reports from the field</p>
         <div class="updates-grid">
-             <!-- ARTICLE / BLOG PREVIEW CARD -->
             <article class="update-card">
-                <div class="update-image" style="background-image: url('https://imgur.com/a/Cin8twT')"></div>
+                <div class="update-image" style="background-image: url('https://dl0.creation.com/articles/p018/c01837/Po-radiohalo.jpg')"></div>
                 <div class="update-content">
                     <span class="tag">Article</span>
+                    <p class="date">December 21, 2025</p>
                     <h3>Polonium Halos: Evidence for Earth’s Rapid Creation</h3>
-                    <p class="date">December 10, 2025</p>
-                    <p>Decades ago, physicist Dr. Robert Gentry uncovered a remarkable feature within granite—the foundational rock...</p>
+                    <p>Microscopic rings in granite that challenge the slow-cooling molten Earth model.</p>
                     <a href="articles/polonium halos.html" class="read-more">Read More →</a>
                 </div>
             </article>
-            <!-- ARTICLE / BLOG PREVIEW CARD -->
+
             <article class="update-card">
-                <div class="update-image" style="background-image: url('https://imgur.com/a/Cin8twT')"></div>
+                <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3')"></div>
                 <div class="update-content">
                     <span class="tag">Article</span>
-                    <h3>Why the Fossil Record Screams "Global Flood" — Not Evolution</h3>
                     <p class="date">December 10, 2025</p>
-                    <p>Polystrate fossils, marine creatures on mountain tops, and billions of dead things buried in rock layers worldwide...</p>
+                    <h3>Why the Fossil Record Screams "Global Flood"</h3>
+                    <p>Billions of dead things, buried in rock layers, laid down by water, all over the Earth.</p>
                     <a href="articles/fossil-record.html" class="read-more">Read More →</a>
                 </div>
             </article>
-            <!-- PODCAST PREVIEW -->
+
             <article class="update-card">
                 <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3')"></div>
                 <div class="update-content">
-                    <span class="tag podcast">Podcast</span>
-                    <h3>Episode 12: Radiometric Dating Exposed – The Assumptions That Collapse Evolution</h3>
+                    <span class="tag">Podcast</span>
                     <p class="date">December 9, 2025</p>
-                    <p>18 minutes of pure fire dismantling the "millions of years" myth with hard science.</p>
+                    <h3>Ep 12: Radiometric Dating Exposed</h3>
+                    <p>Dismantling the assumptions behind "millions of years" with observable science.</p>
                     <a href="podcast/episode12.html" class="read-more">Listen Now →</a>
                 </div>
             </article>
-            <!-- DEBATE / CAMPUS REPORT -->
-            <article class="update-card">
-                <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b59?ixlib=rb-4.0.3')"></div>
-                <div class="update-content">
-                    <span class="tag debate">Campus Report</span>
-                    <h3>UNIPORT Student Admits: "I Can't Defend Evolution Anymore"</h3>
-                    <p class="date">December 8, 2025</p>
-                    <p>Full video + photos from last week's open-mic debate in Rivers State University.</p>
-                    <a href="campus/uniport-debate.html" class="read-more">Watch Highlight →</a>
-                </div>
-            </article>
-            <!-- Add more cards like this daily — just copy-paste -->
         </div>
         <div class="view-all">
-            <a href="blog.html" class="btn-primary large">View All Updates →</a>
+            <a href="blog.html" class="btn-primary">View All Updates →</a>
         </div>
     </section>
 
-    <!-- FINAL POWERFUL FOOTER – LEFT / RIGHT + CENTERED -->
     <footer class="footer">
         <div class="footer-grid">
-            <!-- LEFT SIDE -->
             <div class="footer-left">
                 <h3>I DID NOT EVOLVE</h3>
-                <p>Defending biblical creation with science, logic & Scripture.<br>
-                Equipping Nigerian believers to stand unshakeable on Genesis 1–11.</p>
-                <div class="join-team">
-                    <strong>🔥 Join Our Team</strong><br>
-                    Become a campus rep, speaker, writer or supporter.<br>
-                    <a href="join.html" class="join-btn">Apply Now →</a>
-                </div>
+                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11 with science and logic.</p>
+                <a href="join.html" class="join-btn">Join The Team →</a>
             </div>
-            <!-- RIGHT SIDE – CONTACT & SOCIALS -->
             <div class="footer-right">
-                <div class="contact-item"><a href="mailto:ididnotevolvethetruth@gmail.com">ididnotevolvethetruth@gmail.com</a></div>
-                <div class="contact-item"><a href="https://wa.me/2347032199329" target="_blank">+234 703 219 9329</a></div>
-                <div class="contact-item"> Port Harcourt, Rivers State, Nigeria</div>
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329" target="_blank">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Rivers State, Nigeria</p>
                 <div class="socials">
-                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/" target="_blank">TicTok</a>
-                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g" target="_blank">YouTube</a>
-                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc?mode=wwt" target="_blank">WhatsApp</a>
-                    <a href="https://www.facebook.com/profile.php?id=61584518368456" target="_blank">Facebook</a>
+                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/">TikTok</a>
+                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g">YouTube</a>
+                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc">WhatsApp</a>
+                    <a href="https://www.facebook.com/profile.php?id=61584518368456">Facebook</a>
                 </div>
             </div>
         </div>
-        <!-- CENTERED BOTTOM CREDIT -->
         <div class="footer-bottom">
-            © 2025 I DID NOT EVOLVE<br>
-            <strong>Powered by <a href="https://techthinker360.github.io/Wealthy-web/" target="_blank">Wealthy Web Solutions</a></strong>
+            © 2025 I DID NOT EVOLVE | Powered by <a href="https://techthinker360.github.io/Wealthy-web/" target="_blank">Wealthy Web Solutions</a>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // MOBILE MENU LOGIC
+        const openBtn = document.getElementById('openMenu');
+        const closeBtn = document.getElementById('closeMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sideMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
