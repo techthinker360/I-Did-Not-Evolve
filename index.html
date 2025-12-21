@@ -22,7 +22,7 @@
             top: 0;
             width: 100%;
             background: rgba(0,0,0,0.95);
-            padding: 20px 40px;
+            padding: 15px 40px; /* Slightly tighter on desktop */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,9 +33,10 @@
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 4vw, 2.3rem);
+            font-size: clamp(1.2rem, 4vw, 2.3rem);
             color: #c19a6b;
             font-weight: 700;
+            text-decoration: none;
         }
 
         .nav-links.desktop-links {
@@ -48,7 +49,7 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -61,11 +62,12 @@
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
+            padding: 5px;
         }
 
         .hamburger span {
-            width: 30px;
-            height: 3px;
+            width: 25px;
+            height: 2px;
             background: #c19a6b;
             border-radius: 5px;
             transition: 0.4s;
@@ -76,7 +78,8 @@
             position: fixed;
             top: 0;
             left: -100%;
-            width: 320px;
+            width: 85%; /* Responsive width */
+            max-width: 320px;
             height: 100vh;
             background: #000;
             z-index: 2001;
@@ -107,7 +110,7 @@
             transition: 0.3s;
         }
 
-        .side-links a.highlight { color: #c19a6b; border-top: 1px solid #222; pt: 20px; }
+        .side-links a.highlight { color: #c19a6b; border-top: 1px solid #222; padding-top: 20px; }
 
         .menu-overlay {
             position: fixed;
@@ -124,13 +127,14 @@
         /* ==================== HERO SECTION ==================== */
         .hero {
             height: 100vh;
-            min-height: 600px;
+            min-height: 100svh; /* Dynamic viewport height for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             background: #0a0a0a;
+            padding-top: 80px; /* Space for the fixed navbar */
         }
 
         .hero::before {
@@ -145,31 +149,40 @@
 
         .header-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 10vw, 7rem);
+            font-size: clamp(2.2rem, 10vw, 7rem);
             font-weight: 900;
-            letter-spacing: clamp(5px, 2vw, 20px);
+            letter-spacing: clamp(2px, 2vw, 20px);
             color: #c19a6b;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            line-height: 1.1;
         }
 
         .header-content p {
-            font-size: clamp(1rem, 3vw, 1.6rem);
-            margin-bottom: 40px;
+            font-size: clamp(0.95rem, 3vw, 1.6rem);
+            margin-bottom: 30px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            color: #ccc;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .cta-buttons a {
             display: inline-block;
-            padding: 16px 40px;
-            margin: 10px;
-            font-size: 1.1rem;
+            padding: 14px 35px;
+            font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
             transition: 0.4s;
+            min-width: 200px;
         }
 
         .btn-primary { background: #c19a6b; color: #000; border: 2px solid #c19a6b; }
@@ -178,18 +191,18 @@
         .btn-secondary:hover { background: #c19a6b; color: #000; }
 
         /* ==================== SERVICES GRID ==================== */
-        .services { padding: 100px 20px; background: #0f0f0f; text-align: center; }
+        .services { padding: 80px 20px; background: #0f0f0f; text-align: center; }
         .services h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2rem, 5vw, 4.5rem);
             color: #c19a6b;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -198,7 +211,7 @@
 
         .card {
             height: 350px;
-            padding: 40px 20px;
+            padding: 30px 20px;
             border-radius: 15px;
             border: 1px solid #222;
             display: flex;
@@ -216,17 +229,17 @@
             box-shadow: 0 20px 40px rgba(193,154,107,0.2);
         }
 
-        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #c19a6b; margin-bottom: 10px; z-index: 2; }
-        .card p { font-size: 1rem; color: #ddd; z-index: 2; }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #c19a6b; margin-bottom: 10px; z-index: 2; }
+        .card p { font-size: 0.95rem; color: #ddd; z-index: 2; }
 
         /* ==================== UPDATES SECTION ==================== */
-        .latest-updates { padding: 100px 20px; background: #0a0a0a; text-align: center; }
+        .latest-updates { padding: 80px 20px; background: #0a0a0a; text-align: center; }
         .latest-updates h2 { font-size: clamp(2rem, 5vw, 4rem); color: #c19a6b; margin-bottom: 10px; }
-        .section-subtitle { margin-bottom: 60px; color: #888; }
+        .section-subtitle { margin-bottom: 50px; color: #888; }
 
         .updates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1300px;
             margin: 0 auto;
@@ -242,9 +255,7 @@
         }
 
         .update-card:hover { transform: translateY(-5px); border-color: #333; }
-
         .update-image { height: 200px; background-size: cover; background-position: center; }
-
         .update-content { padding: 25px; }
 
         .tag {
@@ -258,24 +269,24 @@
             margin-bottom: 15px;
         }
 
-        .update-content h3 { font-size: 1.4rem; margin-bottom: 10px; color: #fff; line-height: 1.4; }
-        .date { color: #c19a6b; font-size: 0.9rem; margin-bottom: 10px; }
+        .update-content h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; line-height: 1.4; }
+        .date { color: #c19a6b; font-size: 0.85rem; margin-bottom: 10px; }
         .read-more { color: #c19a6b; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
 
-        .view-all { margin-top: 60px; }
+        .view-all { margin-top: 50px; }
 
         /* ==================== FOOTER ==================== */
-        .footer { padding: 80px 20px 40px; background: #000; border-top: 1px solid #1a1a1a; margin-top: 60px; }
+        .footer { padding: 60px 20px 40px; background: #000; border-top: 1px solid #1a1a1a; margin-top: 60px; }
         .footer-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
             padding-bottom: 40px;
         }
 
-        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
         .join-btn {
             display: inline-block;
             margin-top: 20px;
@@ -287,7 +298,7 @@
             font-weight: 700;
         }
 
-        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
+        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; font-size: 0.95rem;}
         .footer-right a:hover { color: #c19a6b; }
         .socials { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
 
@@ -295,7 +306,7 @@
             text-align: center;
             border-top: 1px solid #1a1a1a;
             padding-top: 30px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
         }
 
@@ -304,15 +315,17 @@
             .navbar { padding: 15px 20px; }
             .desktop-links { display: none; }
             .hamburger { display: flex; }
-            .hero { min-height: 500px; }
-            .cta-buttons a { width: 100%; margin: 5px 0; }
+            .hero { min-height: 100svh; }
+            .cta-buttons a { width: 100%; margin: 0; }
+            .footer-grid { text-align: center; }
+            .socials { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">I DID NOT EVOLVE</div>
+        <a href="index.html" class="logo">I DID NOT EVOLVE</a>
         <ul class="nav-links desktop-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -329,7 +342,7 @@
 
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <div class="logo" style="font-size: 1.4rem;">I DID NOT EVOLVE</div>
+            <div class="logo" style="font-size: 1.2rem;">I DID NOT EVOLVE</div>
             <div class="close-btn" id="closeMenu">&times;</div>
         </div>
         <ul class="side-links">
@@ -458,7 +471,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 I DID NOT EVOLVE | Powered by <a href="https://techthinker360.github.io/Wealthy-web/" target="_blank">Wealthy Web Solutions</a>
+            © 2025 I DID NOT EVOLVE | Powered by <a href="https://techthinker360.github.io/Wealthy-web/" target="_blank" style="color: #c19a6b; text-decoration: none;">Wealthy Web Solutions</a>
         </div>
     </footer>
 

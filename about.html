@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | I DID NOT EVOLVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== GLOBAL SETTINGS ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ==================== UNIVERSAL NAVIGATION ==================== */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0,0,0,0.95); padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 2.3rem); color: #c19a6b; font-weight: 700; text-decoration: none; }
+        .nav-links.desktop-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: #c19a6b; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .hamburger span { width: 25px; height: 2px; background: #c19a6b; border-radius: 5px; }
+
+        /* Side Menu */
+        .side-menu { position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100vh; background: #000; z-index: 2001; transition: 0.5s; padding: 40px; }
+        .side-menu.active { left: 0; }
+        .side-links a { display: block; color: white; font-size: 1.4rem; margin: 25px 0; text-decoration: none; font-weight: 600; }
+        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.4s; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* ==================== ABOUT HERO ==================== */
+        .about-hero {
+            height: 70vh; min-height: 500px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3') center/cover;
+            padding-top: 80px;
+        }
+        .about-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); color: #c19a6b; margin-bottom: 20px; }
+        .hero-tagline { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #ccc; }
+
+        /* ==================== CORE MISSION SECTION ==================== */
+        .mission-section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .mission-grid img { width: 100%; border-radius: 20px; border: 1px solid #222; }
+        .mission-text h2 { font-family: 'Playfair Display', serif; color: #c19a6b; font-size: 2.5rem; margin-bottom: 20px; }
+        .mission-text p { margin-bottom: 20px; font-size: 1.1rem; color: #bbb; }
+
+        /* ==================== THE PILLARS (BULKY CONTENT) ==================== */
+        .pillars-bg { background: #0f0f0f; padding: 100px 20px; }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; color: #c19a6b; font-size: 3rem; margin-bottom: 60px; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .pillar-card { background: #111; padding: 40px; border-radius: 20px; border: 1px solid #222; transition: 0.3s; }
+        .pillar-card:hover { border-color: #c19a6b; transform: translateY(-10px); }
+        .pillar-card h3 { color: #c19a6b; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; }
+        .pillar-card p { font-size: 1rem; color: #888; }
+
+        /* ==================== THE FOUNDER ==================== */
+        .founder-section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        .founder-card { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; background: #111; padding: 50px; border-radius: 30px; border: 1px solid #1a1a1a; align-items: center; }
+        .founder-img { width: 100%; border-radius: 20px; border: 2px solid #c19a6b; filter: grayscale(30%); }
+        .founder-info h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #c19a6b; margin-bottom: 10px; }
+        .founder-tag { color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; }
+        
+        /* ==================== FOOTER ==================== */
+        .footer { padding: 60px 20px; background: #000; border-top: 1px solid #1a1a1a; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; margin-top: 40px; padding-top: 30px; font-size: 0.85rem; color: #555; }
+
+        @media (max-width: 868px) {
+            .mission-grid, .founder-card { grid-template-columns: 1fr; text-align: center; }
+            .desktop-links { display: none; }
+            .hamburger { display: flex; }
+            .navbar { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">I DID NOT EVOLVE</a>
+        <ul class="nav-links desktop-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" style="color:#c19a6b">About</a></li>
+            <li><a href="podcast.html">Podcast</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="openMenu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="side-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="resources.html">Resources</a>
+            <a href="join.html" style="color:#c19a6b">Join The Team →</a>
+        </div>
+    </div>
+    <div class="menu-overlay" id="overlay"></div>
+
+    <header class="about-hero">
+        <div style="padding: 20px;">
+            <h1>The Pursuit of Truth</h1>
+            <p class="hero-tagline">We believe that life’s complexity and beauty aren't accidents of time, but the intentional design of the Creator.</p>
+        </div>
+    </header>
+
+    <section class="mission-section">
+        <div class="mission-grid">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3" alt="Science and Faith">
+            <div class="mission-text">
+                <h2>Defending the Word</h2>
+                <p>I DID NOT EVOLVE is a faith-based apologetics and education ministry dedicated to defending the full trustworthiness of Scripture—beginning with the biblical account of creation.</p>
+                <p>Using science, logic, and Scripture, we demonstrate that the complexity of life reveals an Intelligent Designer rather than random processes, while providing evidence-based answers to the toughest objections against biblical truth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pillars-bg">
+        <h2 class="section-title">Our Foundations</h2>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <h3>Biblical Authority</h3>
+                <p>We stand firmly on Genesis 1-11 as literal history. From the Global Flood to the historical Adam, we believe God's Word is the ultimate foundation for all knowledge.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Scientific Precision</h3>
+                <p>True science always points back to the Creator. We explore DNA, Polonium Halos, and the Fossil Record to show that the evidence fits the Bible, not evolutionary myths.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Campus Mission</h3>
+                <p>We believe the battle for the mind is happening in our universities. Our tour brings open-mic debates and resources directly to students across Nigeria.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder-section">
+        <div class="founder-card">
+            <img src="images/Wealthy-removebg-preview.png" class="founder-img" alt="Wealthy Emeseh">
+            <div class="founder-info">
+                <span class="founder-tag">Founder & Lead Apologist</span>
+                <h2>Wealthy Emeseh</h2>
+                <p>Wealthy is a student of Mechanical Engineering at Rivers State University. Driven by a passion for Christ and a heart for the truth, he founded this ministry to equip believers to stand unshakeable in an age of skepticism.</p>
+                <p style="margin-top: 15px;"><i>"Lives are being changed, students are being equipped, and the gospel is going forth in power—that all may come to the knowledge of the truth." (1 Tim 2:4)</i></p>
+                <div style="margin-top: 30px;">
+                    <a href="https://wa.me/2347032199329" style="color:#c19a6b; text-decoration:none; font-weight:700;">WhatsApp Chat →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h3>I DID NOT EVOLVE</h3>
+                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11 with science and logic.</p>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329" target="_blank">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Nigeria</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 I DID NOT EVOLVE | Powered by Wealthy Web Solutions
+        </div>
+    </footer>
+
+    <script>
+        const openBtn = document.getElementById('openMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sideMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>

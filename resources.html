@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources Archive | I DID NOT EVOLVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== GLOBAL SETTINGS ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==================== UNIVERSAL NAVIGATION ==================== */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0,0,0,0.95); padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 2.3rem); color: #c19a6b; font-weight: 700; text-decoration: none; }
+        .nav-links.desktop-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: #c19a6b; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .hamburger span { width: 25px; height: 2px; background: #c19a6b; border-radius: 5px; }
+
+        .side-menu { position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100vh; background: #000; z-index: 2001; transition: 0.5s; padding: 40px; }
+        .side-menu.active { left: 0; }
+        .side-links a { display: block; color: white; font-size: 1.4rem; margin: 25px 0; text-decoration: none; font-weight: 600; }
+        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.4s; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* ==================== HERO SECTION ==================== */
+        .res-hero {
+            height: 45vh; min-height: 350px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3') center/cover;
+            padding-top: 80px;
+        }
+        .res-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: #c19a6b; }
+
+        /* ==================== SEARCH & FILTER BOX ==================== */
+        .search-section {
+            max-width: 1200px; margin: -50px auto 40px; padding: 0 20px;
+            position: relative; z-index: 10;
+        }
+        .search-container {
+            background: #111; padding: 30px; border-radius: 20px; border: 1px solid #c19a6b;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .search-bar {
+            width: 100%; padding: 18px 25px; background: #0a0a0a; border: 1px solid #333;
+            border-radius: 12px; color: white; font-size: 1.1rem; margin-bottom: 20px;
+            outline: none; transition: 0.3s;
+        }
+        .search-bar:focus { border-color: #c19a6b; box-shadow: 0 0 10px rgba(193, 154, 107, 0.3); }
+
+        .filter-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .filter-btn {
+            padding: 8px 20px; background: transparent; border: 1px solid #444; color: #fff;
+            border-radius: 50px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: #c19a6b; border-color: #c19a6b; color: #000; font-weight: 700; }
+
+        /* ==================== RESOURCE GRID ==================== */
+        .archive-body { max-width: 1200px; margin: 0 auto; padding: 40px 20px 100px; }
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .res-card {
+            background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222;
+            transition: 0.4s; display: flex; flex-direction: column;
+        }
+        .res-card.hidden { display: none; }
+        .res-card:hover { transform: translateY(-10px); border-color: #c19a6b; }
+        
+        .res-image { height: 200px; background-size: cover; background-position: center; position: relative; }
+        .res-tag { 
+            position: absolute; top: 15px; left: 15px; background: #c19a6b; color: #000;
+            padding: 4px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; text-transform: uppercase;
+        }
+
+        .res-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .res-content h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.4rem; margin-bottom: 12px; }
+        .res-content p { color: #888; font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .res-action {
+            margin-top: auto; text-decoration: none; color: #c19a6b; font-weight: 700;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+
+        .no-results { display: none; text-align: center; padding: 50px; font-size: 1.2rem; color: #555; }
+
+        /* ==================== FOOTER ==================== */
+        .footer { padding: 60px 20px; background: #000; border-top: 1px solid #1a1a1a; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; margin-top: 40px; padding-top: 30px; font-size: 0.85rem; color: #555; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .desktop-links { display: none; }
+            .hamburger { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">I DID NOT EVOLVE</a>
+        <ul class="nav-links desktop-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="podcast.html">Podcast</a></li>
+            <li><a href="resources.html" style="color:#c19a6b">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="openMenu"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="side-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="resources.html">Resources</a>
+            <a href="join.html" style="color:#c19a6b">Join The Team →</a>
+        </div>
+    </div>
+    <div class="menu-overlay" id="overlay"></div>
+
+    <header class="res-hero">
+        <h1>Library of Truth</h1>
+    </header>
+
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Search for DNA, Flood, Dinosaurs, fossils...">
+            <div class="filter-btns">
+                <button class="filter-btn active" data-filter="all">All Resources</button>
+                <button class="filter-btn" data-filter="article">Articles</button>
+                <button class="filter-btn" data-filter="booklet">Booklets</button>
+                <button class="filter-btn" data-filter="graphic">Infographics</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="archive-body">
+        <div class="no-results" id="noResults">No resources match your search. Try another term!</div>
+        
+        <div class="resource-grid" id="resourceGrid">
+            
+            <div class="res-card" data-category="article">
+                <div class="res-image" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3')">
+                    <span class="res-tag">Article</span>
+                </div>
+                <div class="res-content">
+                    <h3>Polonium Halos: Evidence of Creation</h3>
+                    <p>Why microscopic halos in granite suggest an instantaneous creation of the earth.</p>
+                    <a href="#" class="res-action">Read Article →</a>
+                </div>
+            </div>
+
+            <div class="res-card" data-category="booklet">
+                <div class="res-image" style="background-image: url('https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3')">
+                    <span class="res-tag">Booklet</span>
+                </div>
+                <div class="res-content">
+                    <h3>The Global Flood Guide</h3>
+                    <p>A deep dive into the geological evidence for Noah's Flood across the world.</p>
+                    <a href="dummy.pdf" download class="res-action">Download PDF ↓</a>
+                </div>
+            </div>
+
+            <div class="res-card" data-category="graphic">
+                <div class="res-image" style="background-image: url('https://images.unsplash.com/photo-1530210124550-912dc1381cb8?ixlib=rb-4.0.3')">
+                    <span class="res-tag">Graphic</span>
+                </div>
+                <div class="res-content">
+                    <h3>DNA: Information Theory</h3>
+                    <p>An infographic showing why random chance cannot create a coded language like DNA.</p>
+                    <a href="dna.png" download class="res-action">Save Image ↓</a>
+                </div>
+            </div>
+
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h3>I DID NOT EVOLVE</h3>
+                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11 with science and logic.</p>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329" target="_blank">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Nigeria</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2025 I DID NOT EVOLVE</div>
+    </footer>
+
+    <script>
+        // --- MOBILE MENU ---
+        const openBtn = document.getElementById('openMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+        function toggle() { sideMenu.classList.toggle('active'); overlay.classList.toggle('active'); }
+        openBtn.addEventListener('click', toggle);
+        overlay.addEventListener('click', toggle);
+
+        // --- SEARCH & FILTER LOGIC ---
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.res-card');
+        const noResults = document.getElementById('noResults');
+
+        function filterResources() {
+            const query = searchInput.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            let count = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                const category = card.dataset.category;
+
+                const matchesSearch = title.includes(query) || desc.includes(query);
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+                if (matchesSearch && matchesFilter) {
+                    card.classList.remove('hidden');
+                    count++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            noResults.style.display = count === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterResources);
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterResources();
+            });
+        });
+    </script>
+</body>
+</html>

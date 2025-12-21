@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | I DID NOT EVOLVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== GLOBAL SETTINGS ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==================== UNIVERSAL NAVIGATION ==================== */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0,0,0,0.95); padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 2.3rem); color: #c19a6b; font-weight: 700; text-decoration: none; }
+        .nav-links.desktop-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: #c19a6b; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .hamburger span { width: 25px; height: 2px; background: #c19a6b; border-radius: 5px; }
+
+        .side-menu { position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100vh; background: #000; z-index: 2001; transition: 0.5s; padding: 40px; }
+        .side-menu.active { left: 0; }
+        .side-links a { display: block; color: white; font-size: 1.4rem; margin: 25px 0; text-decoration: none; font-weight: 600; }
+        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.4s; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* ==================== CONTACT HERO ==================== */
+        .contact-hero {
+            height: 40vh; min-height: 300px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), #0a0a0a), url('https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?ixlib=rb-4.0.3') center/cover;
+            padding-top: 80px;
+        }
+        .contact-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: #c19a6b; }
+
+        /* ==================== CONTACT LAYOUT ==================== */
+        .contact-container {
+            max-width: 1100px; margin: 0 auto; padding: 60px 20px;
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px;
+        }
+
+        .contact-info h2 { font-family: 'Playfair Display', serif; color: #c19a6b; font-size: 2rem; margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 30px; color: #aaa; }
+        
+        .contact-method { margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px; }
+        .icon-box { color: #c19a6b; font-size: 1.5rem; font-weight: bold; }
+        .method-text h4 { color: #fff; margin-bottom: 5px; }
+        .method-text a { color: #c19a6b; text-decoration: none; }
+
+        /* ==================== THE FORM ==================== */
+        .form-card { background: #111; padding: 40px; border-radius: 20px; border: 1px solid #222; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #888; font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 15px; background: #0a0a0a; border: 1px solid #333;
+            color: white; border-radius: 8px; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: #c19a6b; }
+        
+        .submit-btn {
+            width: 100%; padding: 18px; background: #c19a6b; color: #000; border: none;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;
+            font-size: 1rem; text-transform: uppercase;
+        }
+        .submit-btn:hover { background: #fff; letter-spacing: 2px; }
+
+        /* ==================== FOOTER ==================== */
+        .footer { padding: 60px 20px; background: #000; border-top: 1px solid #1a1a1a; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; margin-top: 40px; padding-top: 30px; font-size: 0.85rem; color: #555; }
+
+        @media (max-width: 868px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .navbar { padding: 15px 20px; }
+            .desktop-links { display: none; }
+            .hamburger { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">I DID NOT EVOLVE</a>
+        <ul class="nav-links desktop-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="podcast.html">Podcast</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html" style="color:#c19a6b">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="openMenu"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="side-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="resources.html">Resources</a>
+            <a href="join.html" style="color:#c19a6b">Join The Team →</a>
+        </div>
+    </div>
+    <div class="menu-overlay" id="overlay"></div>
+
+    <header class="contact-hero">
+        <h1>Let's Start a Dialogue</h1>
+    </header>
+
+    <main class="contact-container">
+        <div class="contact-info">
+            <h2>Reach Out</h2>
+            <p>Have a question about creation science? Want to host a debate at your university? We are here to help.</p>
+            
+            <div class="contact-method">
+                <div class="icon-box">📱</div>
+                <div class="method-text">
+                    <h4>WhatsApp / Call</h4>
+                    <a href="https://wa.me/2347032199329">+234 703 219 9329</a>
+                </div>
+            </div>
+
+            <div class="contact-method">
+                <div class="icon-box">📧</div>
+                <div class="method-text">
+                    <h4>Email</h4>
+                    <a href="mailto:ididnotevolvethetruth@gmail.com">ididnotevolvethetruth@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="contact-method">
+                <div class="icon-box">📍</div>
+                <div class="method-text">
+                    <h4>Location</h4>
+                    <p>Port Harcourt, Nigeria</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <form action="https://formspree.io/f/your_id_here" method="POST">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Wealthy Emeseh" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject" placeholder="Inquiry about Campus Tour">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h3>I DID NOT EVOLVE</h3>
+                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11 with science and logic.</p>
+            </div>
+            <div class="footer-right" style="text-align: right;">
+                <p>Follow the Truth</p>
+                <a href="https://wa.me/2347032199329" style="color:#c19a6b; text-decoration:none;">WhatsApp Community</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2025 I DID NOT EVOLVE</div>
+    </footer>
+
+    <script>
+        const openBtn = document.getElementById('openMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+        function toggle() { sideMenu.classList.toggle('active'); overlay.classList.toggle('active'); }
+        openBtn.addEventListener('click', toggle);
+        overlay.addEventListener('click', toggle);
+    </script>
+</body>
+</html>
