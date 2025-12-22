@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I DID NOT EVOLVE | Created. Not Evolved.</title>
+    <title>Home | I DID NOT EVOLVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* ==================== GLOBAL SETTINGS ==================== */
+        /* ==================== BASE STYLES ==================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
             font-family: 'Open Sans', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ==================== NAVIGATION & SIDE MENU ==================== */
+        /* ==================== NAVIGATION (DO NOT CHANGE) ==================== */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(0,0,0,0.95);
-            padding: 15px 40px; /* Slightly tighter on desktop */
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid #1a1a1a;
+            border-bottom: 1px solid #222;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 4vw, 2.3rem);
+            font-size: 1.6rem;
             color: #c19a6b;
             font-weight: 700;
             text-decoration: none;
+            z-index: 2100;
         }
 
-        .nav-links.desktop-links {
+        .nav-links {
             list-style: none;
             display: flex;
             gap: 30px;
@@ -57,268 +59,280 @@
 
         .nav-links a:hover { color: #c19a6b; }
 
-        .hamburger {
+        .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
-            padding: 5px;
+            z-index: 2100;
         }
 
-        .hamburger span {
+        .menu-toggle span {
             width: 25px;
-            height: 2px;
+            height: 3px;
             background: #c19a6b;
-            border-radius: 5px;
-            transition: 0.4s;
-        }
-
-        /* Side Menu Logic */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 85%; /* Responsive width */
-            max-width: 320px;
-            height: 100vh;
-            background: #000;
-            z-index: 2001;
-            transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-            padding: 40px;
-            box-shadow: 10px 0 30px rgba(0,0,0,0.8);
-        }
-
-        .side-menu.active { left: 0; }
-
-        .side-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        .close-btn { font-size: 2.5rem; cursor: pointer; color: #c19a6b; line-height: 1; }
-
-        .side-links { list-style: none; }
-        .side-links a {
-            display: block;
-            color: white;
-            font-size: 1.4rem;
-            margin: 25px 0;
-            text-decoration: none;
-            font-weight: 600;
             transition: 0.3s;
         }
 
-        .side-links a.highlight { color: #c19a6b; border-top: 1px solid #222; padding-top: 20px; }
-
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.4s;
+        /* ==================== CONTENT LAYOUT ==================== */
+        .page-container {
+            max-width: 1200px; 
+            margin: 100px auto 40px;
+            padding: 0 15px;
         }
 
-        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .main-card {
+            background: #111;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 0; /* Changed to 0 so hero can span edge-to-edge if needed */
+        }
 
-        /* ==================== HERO SECTION ==================== */
-        .hero {
-            height: 100vh;
-            min-height: 100svh; /* Dynamic viewport height for mobile */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* ==================== HERO SECTION (UPDATED) ==================== */
+        .page-hero {
             text-align: center;
-            position: relative;
-            background: #0a0a0a;
-            padding-top: 80px; /* Space for the fixed navbar */
+            padding: 100px 5%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=2070') center/cover;
+            border-bottom: 1px solid #222;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3') center/cover;
-            opacity: 0.2;
+/* ==================== HERO SECTION (FIXED STARS) ==================== */
+.page-hero {
+    text-align: center;
+    padding: 120px 5% 100px; /* Increased top padding for better spacing */
+    /* Deep space background with a subtle dark overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
+                url('https://www.transparenttextures.com/patterns/stardust.png'), /* Texture layer for extra stars */
+                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071') center center;
+    background-size: auto, auto, cover;
+    background-attachment: fixed; /* Parallax effect makes stars feel deeper */
+    border-bottom: 1px solid #222;
+}
+
+.page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    color: #c19a6b;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Helps text pop against stars */
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: #e0e0e0;
+    max-width: 850px;
+    margin: 0 auto 45px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Button styles to match the image precisely */
+.btn-coming-soon {
+    background: #c19a6b;
+    color: #000;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #fff;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid #c19a6b;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+        .btn-coming-soon:hover, .btn-outline:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
-        .header-content { position: relative; z-index: 2; padding: 20px; width: 100%; }
+        .page-content { padding: 60px 5%; }
 
-        .header-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 10vw, 7rem);
-            font-weight: 900;
-            letter-spacing: clamp(2px, 2vw, 20px);
-            color: #c19a6b;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.1;
-        }
-
-        .header-content p {
-            font-size: clamp(0.95rem, 3vw, 1.6rem);
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #ccc;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .cta-buttons a {
-            display: inline-block;
-            padding: 14px 35px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: 0.4s;
-            min-width: 200px;
-        }
-
-        .btn-primary { background: #c19a6b; color: #000; border: 2px solid #c19a6b; }
-        .btn-primary:hover { transform: translateY(-5px); background: #d4af37; }
-        .btn-secondary { background: transparent; color: #fff; border: 2px solid #c19a6b; }
-        .btn-secondary:hover { background: #c19a6b; color: #000; }
-
-        /* ==================== SERVICES GRID ==================== */
-        .services { padding: 80px 20px; background: #0f0f0f; text-align: center; }
-        .services h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            color: #c19a6b;
-            margin-bottom: 50px;
-        }
-
+        /* ==================== WHAT WE DO CARDS ==================== */
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .card-link { text-decoration: none; color: inherit; }
 
         .card {
-            height: 350px;
-            padding: 30px 20px;
-            border-radius: 15px;
-            border: 1px solid #222;
+            height: 250px;
+            border-radius: 10px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-            text-align: left;
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 1px solid #222;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
+        .card:hover { 
+            transform: translateY(-10px); 
             border-color: #c19a6b;
-            box-shadow: 0 20px 40px rgba(193,154,107,0.2);
         }
 
-        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #c19a6b; margin-bottom: 10px; z-index: 2; }
-        .card p { font-size: 0.95rem; color: #ddd; z-index: 2; }
+        .card h3 { color: #c19a6b; margin-bottom: 10px; font-size: 1.5rem; }
+        .card p { font-size: 0.95rem; margin-bottom: 0; line-height: 1.4; }
 
-        /* ==================== UPDATES SECTION ==================== */
-        .latest-updates { padding: 80px 20px; background: #0a0a0a; text-align: center; }
-        .latest-updates h2 { font-size: clamp(2rem, 5vw, 4rem); color: #c19a6b; margin-bottom: 10px; }
-        .section-subtitle { margin-bottom: 50px; color: #888; }
+        /* ==================== LATEST UPDATES GRID ==================== */
+        .latest-updates { margin-top: 80px; }
+        .latest-updates h2 { text-align: center; margin-bottom: 10px; font-size: 2.5rem; }
+        .section-subtitle { text-align: center; color: #888; margin-bottom: 40px; }
 
         .updates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1300px;
-            margin: 0 auto;
         }
 
         .update-card {
-            background: #111;
-            border-radius: 15px;
+            background: #1a1a1a;
+            border-radius: 10px;
             overflow: hidden;
-            border: 1px solid #222;
-            text-align: left;
             transition: 0.3s;
         }
 
-        .update-card:hover { transform: translateY(-5px); border-color: #333; }
-        .update-image { height: 200px; background-size: cover; background-position: center; }
+        .update-card:hover { background: #222; }
+
+        .update-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
         .update-content { padding: 25px; }
 
         .tag {
-            display: inline-block;
             background: #c19a6b;
             color: #000;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 3px 10px;
+            font-size: 0.7rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-radius: 3px;
         }
 
-        .update-content h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; line-height: 1.4; }
-        .date { color: #c19a6b; font-size: 0.85rem; margin-bottom: 10px; }
-        .read-more { color: #c19a6b; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+        .date { font-size: 0.8rem; color: #666; margin: 10px 0; }
+        .update-content h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+        .update-content p { font-size: 0.9rem; color: #bbb; }
 
-        .view-all { margin-top: 50px; }
+        .read-more {
+            color: #c19a6b;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .view-all { text-align: center; margin-top: 50px; }
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #c19a6b;
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-primary:hover { background: #e2b784; }
 
         /* ==================== FOOTER ==================== */
-        .footer { padding: 60px 20px 40px; background: #000; border-top: 1px solid #1a1a1a; margin-top: 60px; }
+        .footer {
+            background: #000;
+            padding: 60px 20px 30px;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+        }
+
         .footer-grid {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
-            padding-bottom: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        
         .join-btn {
             display: inline-block;
-            margin-top: 20px;
-            background: #c19a6b;
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 50px;
+            margin-top: 15px;
+            color: #c19a6b;
+            border: 1px solid #c19a6b;
+            padding: 8px 18px;
             text-decoration: none;
-            font-weight: 700;
+            transition: 0.3s;
         }
 
-        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; font-size: 0.95rem;}
-        .footer-right a:hover { color: #c19a6b; }
-        .socials { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .footer-right a { color: #888; text-decoration: none; display: block; margin-bottom: 8px; }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-links a {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: #c19a6b;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            color: #fff;
+            transform: translateY(-3px);
+        }
 
         .footer-bottom {
             text-align: center;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 30px;
-            font-size: 0.85rem;
-            color: #555;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #444;
         }
 
-        /* ==================== MOBILE ADJUSTMENTS ==================== */
-        @media (max-width: 868px) {
+        /* ==================== MOBILE STYLES ==================== */
+        @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
-            .desktop-links { display: none; }
-            .hamburger { display: flex; }
-            .hero { min-height: 100svh; }
-            .cta-buttons a { width: 100%; margin: 0; }
-            .footer-grid { text-align: center; }
-            .socials { justify-content: center; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                height: 100vh;
+                width: 75%;
+                background: #111;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+            .nav-links.active { right: 0; }
+            .page-hero { padding: 80px 20px; }
+            .page-content { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -326,171 +340,158 @@
 
     <nav class="navbar">
         <a href="index.html" class="logo">I DID NOT EVOLVE</a>
-        <ul class="nav-links desktop-links">
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="podcast.html">Podcast</a></li>
             <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="hamburger" id="openMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 
-    <div class="side-menu" id="sideMenu">
-        <div class="side-menu-header">
-            <div class="logo" style="font-size: 1.2rem;">I DID NOT EVOLVE</div>
-            <div class="close-btn" id="closeMenu">&times;</div>
-        </div>
-        <ul class="side-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="podcast.html">Podcast</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="join.html" class="highlight">Join The Team →</a></li>
-        </ul>
-    </div>
-    <div class="menu-overlay" id="overlay"></div>
+    <main class="page-container">
+        <div class="main-card">
+            
+            <header class="page-hero">
+                <h1>I DID NOT EVOLVE</h1>
+                <p class="hero-subtitle">Created in the image of God • Defending Biblical truth with science, logic & Scripture</p>
+                <div class="hero-btns">
+                    <a href="podcast.html" class="btn-coming-soon">Podcast Coming Soon</a>
+                    <a href="resources.html" class="btn-outline">Free Resources</a>
+                </div>
+            </header>
 
-    <header class="hero">
-        <div class="header-content">
-            <h1>I DID NOT EVOLVE</h1>
-            <p>Created in the image of God • Defending Biblical truth with science, logic & Scripture</p>
-            <div class="cta-buttons">
-                <a href="podcast.html" class="btn-primary">Podcast Coming Soon</a>
-                <a href="resources.html" class="btn-secondary">Free Resources</a>
-            </div>
-        </div>
-    </header>
+            <section class="page-content">
+                <section class="services">
+                    <h2>What We Do</h2>
+                    <div class="cards">
+                        <a href="podcast.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&q=85') center/cover;">
+                                <h3>Weekly Podcast</h3>
+                                <p>Short, hard-hitting episodes destroying evolutionary myths with evidence.</p>
+                            </div>
+                        </a>
+                        <a href="debates.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
+                                <h3>Live Debates</h3>
+                                <p>Respectful but unrelenting public defenses of biblical creation.</p>
+                            </div>
+                        </a>
+                        <a href="resources.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&q=85') center/cover;">
+                                <h3>Resources</h3>
+                                <p>Infographics, booklets, and articles you can download and share.</p>
+                            </div>
+                        </a>
+                        <a href="campus.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
+                                <h3>Campus Tours</h3>
+                                <p>Open-mic debates & Q&A in universities across Nigeria.</p>
+                            </div>
+                        </a>
+                        <a href="training.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&q=85') center/cover;">
+                                <h3>Training</h3>
+                                <p>Raising the next generation of bold Nigerian defenders of the faith.</p>
+                            </div>
+                        </a>
+                        <a href="join.html" class="card-link">
+                            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=85') center/cover;">
+                                <h3>Join The Team</h3>
+                                <p>Join the next set of changemakers defending the truth.</p>
+                            </div>
+                        </a>
+                    </div>
+                </section>
 
-    <section class="services">
-        <h2>What We Do</h2>
-        <div class="cards">
-            <a href="podcast.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Weekly Podcast</h3>
-                    <p>Short, hard-hitting episodes destroying evolutionary myths with evidence.</p>
-                </div>
-            </a>
-            <a href="debates.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
-                    <h3>Live Debates</h3>
-                    <p>Respectful but unrelenting public defenses of biblical creation.</p>
-                </div>
-            </a>
-            <a href="resources.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Resources</h3>
-                    <p>Infographics, booklets, and articles you can download and share.</p>
-                </div>
-            </a>
-            <a href="campus.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&q=85') center/cover;">
-                    <h3>Campus Tours</h3>
-                    <p>Open-mic debates & Q&A in universities across Nigeria.</p>
-                </div>
-            </a>
-            <a href="training.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Training</h3>
-                    <p>Raising the next generation of bold Nigerian defenders of the faith.</p>
-                </div>
-            </a>
-            <a href="join.html" class="card-link">
-                <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=85') center/cover;">
-                    <h3>Join The Team</h3>
-                    <p>Join the next set of changemakers defending the truth.</p>
-                </div>
-            </a>
-        </div>
-    </section>
+                <section class="latest-updates">
+                    <h2>Latest Updates</h2>
+                    <p class="section-subtitle">Fresh insights, media, and reports from the field</p>
+                    <div class="updates-grid">
+                        <article class="update-card">
+                            <div class="update-image" style="background-image: url('https://dl0.creation.com/articles/p018/c01837/Po-radiohalo.jpg')"></div>
+                            <div class="update-content">
+                                <span class="tag">Article</span>
+                                <p class="date">December 21, 2025</p>
+                                <h3>Polonium Halos: Evidence for Earth’s Rapid Creation</h3>
+                                <p>Microscopic rings in granite that challenge the slow-cooling molten Earth model.</p>
+                                <a href="articles/polonium halos.html" class="read-more">Read More →</a>
+                            </div>
+                        </article>
 
-    <section class="latest-updates">
-        <h2>Latest Updates</h2>
-        <p class="section-subtitle">Fresh insights, media, and reports from the field</p>
-        <div class="updates-grid">
-            <article class="update-card">
-                <div class="update-image" style="background-image: url('https://dl0.creation.com/articles/p018/c01837/Po-radiohalo.jpg')"></div>
-                <div class="update-content">
-                    <span class="tag">Article</span>
-                    <p class="date">December 21, 2025</p>
-                    <h3>Polonium Halos: Evidence for Earth’s Rapid Creation</h3>
-                    <p>Microscopic rings in granite that challenge the slow-cooling molten Earth model.</p>
-                    <a href="articles/polonium halos.html" class="read-more">Read More →</a>
-                </div>
-            </article>
+                        <article class="update-card">
+                            <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3')"></div>
+                            <div class="update-content">
+                                <span class="tag">Article</span>
+                                <p class="date">December 10, 2025</p>
+                                <h3>Why the Fossil Record Screams "Global Flood"</h3>
+                                <p>Billions of dead things, buried in rock layers, laid down by water, all over the Earth.</p>
+                                <a href="articles/fossil-record.html" class="read-more">Read More →</a>
+                            </div>
+                        </article>
 
-            <article class="update-card">
-                <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3')"></div>
-                <div class="update-content">
-                    <span class="tag">Article</span>
-                    <p class="date">December 10, 2025</p>
-                    <h3>Why the Fossil Record Screams "Global Flood"</h3>
-                    <p>Billions of dead things, buried in rock layers, laid down by water, all over the Earth.</p>
-                    <a href="articles/fossil-record.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <article class="update-card">
-                <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3')"></div>
-                <div class="update-content">
-                    <span class="tag">Podcast</span>
-                    <p class="date">December 9, 2025</p>
-                    <h3>Ep 12: Radiometric Dating Exposed</h3>
-                    <p>Dismantling the assumptions behind "millions of years" with observable science.</p>
-                    <a href="podcast/episode12.html" class="read-more">Listen Now →</a>
-                </div>
-            </article>
+                        <article class="update-card">
+                            <div class="update-image" style="background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3')"></div>
+                            <div class="update-content">
+                                <span class="tag">Podcast</span>
+                                <p class="date">December 9, 2025</p>
+                                <h3>Ep 12: Radiometric Dating Exposed</h3>
+                                <p>Dismantling the assumptions behind "millions of years" with observable science.</p>
+                                <a href="podcast/episode12.html" class="read-more">Listen Now →</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="view-all">
+                        <a href="blog.html" class="btn-primary">View All Updates →</a>
+                    </div>
+                </section>
+            </section>
         </div>
-        <div class="view-all">
-            <a href="blog.html" class="btn-primary">View All Updates →</a>
-        </div>
-    </section>
+    </main>
 
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-left">
                 <h3>I DID NOT EVOLVE</h3>
-                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11 with science and logic.</p>
-                <a href="join.html" class="join-btn">Join The Team →</a>
+                <p>Defending biblical creation with science, logic & Scripture.</p>
+                <a href="join.html" class="join-btn">Apply Now →</a>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584518368456" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc?mode=wwt" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
             <div class="footer-right">
                 <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
-                <a href="https://wa.me/2347032199329" target="_blank">📱 +234 703 219 9329</a>
+                <a href="https://wa.me/2347032199329">📱 +234 703 219 9329</a>
                 <p>🌍 Port Harcourt, Rivers State, Nigeria</p>
-                <div class="socials">
-                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/">TikTok</a>
-                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g">YouTube</a>
-                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc">WhatsApp</a>
-                    <a href="https://www.facebook.com/profile.php?id=61584518368456">Facebook</a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 I DID NOT EVOLVE | Powered by <a href="https://techthinker360.github.io/Wealthy-web/" target="_blank" style="color: #c19a6b; text-decoration: none;">Wealthy Web Solutions</a>
+            © 2025 I DID NOT EVOLVE | Powered by Wealthy Web Solutions
         </div>
     </footer>
 
     <script>
-        // MOBILE MENU LOGIC
-        const openBtn = document.getElementById('openMenu');
-        const closeBtn = document.getElementById('closeMenu');
-        const sideMenu = document.getElementById('sideMenu');
-        const overlay = document.getElementById('overlay');
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
 
-        function toggleMenu() {
-            sideMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
-        }
-
-        openBtn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>

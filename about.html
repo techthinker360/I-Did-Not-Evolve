@@ -4,136 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | I DID NOT EVOLVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.8; }
-
-        /* NAVIGATION */
-        .navbar {
-            position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95);
-            padding: 20px 40px; display: flex; justify-content: space-between;
-            align-items: center; z-index: 1000; backdrop-filter: blur(15px);
-            border-bottom: 1px solid #222;
-        }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #c19a6b; font-weight: 700; text-decoration: none; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* HERO SECTION */
-        .about-hero {
-            height: 60vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
-            url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3') center/cover;
-            padding: 20px;
-        }
-        .about-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); color: #c19a6b; }
-
-        /* MISSION SECTION */
-        .section-container { max-width: 1000px; margin: 0 auto; padding: 100px 20px; }
-        .mission-text { font-size: 1.25rem; text-align: center; color: #ccc; margin-bottom: 60px; }
-        .highlight-gold { color: #c19a6b; font-weight: 700; }
-
-        /* CORE PILLARS GRID */
-        .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
-        .pillar-card { background: #111; padding: 40px; border-radius: 15px; border-left: 4px solid #c19a6b; }
-        .pillar-card h3 { font-family: 'Playfair Display', serif; color: #c19a6b; margin-bottom: 15px; font-size: 1.6rem; }
-
-        /* IMAGE BREAK SECTION */
-        .image-break {
-            height: 400px;
-            background: fixed center/cover url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3');
-            margin: 60px 0;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .image-break::after { content: "Defending the Truth in Lecture Halls Across Nigeria"; position: absolute; color: white; font-family: 'Playfair Display', serif; font-size: 1.5rem; background: rgba(0,0,0,0.6); padding: 10px 30px; }
-
-        /* FOUNDER SECTION */
-        .founder-section { background: #0f0f0f; padding: 100px 20px; }
-        .founder-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; }
-        .founder-img { width: 100%; border-radius: 20px; border: 2px solid #c19a6b; filter: grayscale(50%); }
-        .founder-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #c19a6b; margin-bottom: 10px; }
-        .founder-tag { color: #888; font-weight: 600; margin-bottom: 20px; display: block; }
-
-        /* CTA SECTION */
-        .final-cta { text-align: center; padding: 100px 20px; background: #c19a6b; color: #000; }
-        .final-cta h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
-        .cta-btn { display: inline-block; padding: 15px 40px; background: #000; color: #c19a6b; text-decoration: none; font-weight: 700; border-radius: 50px; margin-top: 20px; }
-
-        @media (max-width: 768px) {
-            .founder-grid { grid-template-columns: 1fr; text-align: center; }
-            .nav-links { display: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <nav class="navbar">
         <a href="index.html" class="logo">I DID NOT EVOLVE</a>
-        <ul class="nav-links">
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html" style="color:#c19a6b;">About</a></li>
             <li><a href="podcast.html">Podcast</a></li>
             <li><a href="resources.html">Resources</a></li>
-            <li><a href="join.html">Join Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="about-hero">
-        <h1>Our Mission</h1>
-    </header>
+    <main class="page-container">
+        <div class="main-card">
+            
+            <header class="page-hero">
+                <h1>Our Mission</h1>
+                <p class="hero-subtitle">Defending the full trustworthiness of Scripture through science and logic.</p>
+            </header>
 
-    <section class="section-container">
-        <div class="mission-text">
-            <p>I DID NOT EVOLVE is a faith-based apologetics and education ministry dedicated to defending the <span class="highlight-gold">full trustworthiness of Scripture</span>. From the biblical account of creation to the global flood and the authority of Genesis, we provide clear, evidence-based answers to the toughest objections against biblical truth.</p>
+            <section class="page-content">
+                <div style="max-width: 900px; margin: 0 auto; text-align: center; font-size: 1.2rem; color: #ccc; margin-bottom: 60px;">
+                    <p>I DID NOT EVOLVE is a faith-based apologetics and education ministry dedicated to defending the <span class="highlight-gold">full trustworthiness of Scripture</span>. From the biblical account of creation to the global flood, we provide clear, evidence-based answers to the toughest objections.</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card" style="background: #1a1a1a;">
+                        <h3>Scientific Integrity</h3>
+                        <p>We use biology, geology, and physics to demonstrate that life's complexity reveals an <span class="highlight-gold">Intelligent Designer</span>.</p>
+                    </div>
+                    <div class="card" style="background: #1a1a1a;">
+                        <h3>Campus Awareness</h3>
+                        <p>We take the truth to university lecture halls through open-mic debates and Q&A sessions across Nigeria.</p>
+                    </div>
+                    <div class="card" style="background: #1a1a1a;">
+                        <h3>Future Leaders</h3>
+                        <p>We are raising a generation of young Nigerian apologists who can confidently answer any skeptic with grace.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="image-break"></div>
+
+            <section class="founder-section">
+                <div class="founder-grid">
+                    <img src="https://via.placeholder.com/500x600" alt="Wealthy Emeseh" class="founder-img">
+                    <div class="founder-info">
+                        <span class="founder-tag">Founder & Lead Apologist</span>
+                        <h2>Wealthy Emeseh</h2>
+                        <p>Wealthy is a student of Mechanical Engineering at Rivers State University. Driven by a passion for Christ, he founded <strong>I DID NOT EVOLVE</strong> to equip believers with the scientific and logical tools needed to stand unshakeable.</p>
+                        <p style="margin-top: 20px; font-style: italic;">"Life’s complexity, beauty, and information-rich systems are unmistakable evidence of the God of the Bible."</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <a href="https://wa.me/2347032199329" class="btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">WhatsApp Chat →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta">
+                <h2>Ready to Join the Family?</h2>
+                <p>Whether you are a researcher, a student, or a prayer warrior, there is a place for you.</p>
+                <a href="join.html" class="btn-gold" style="display: inline-block; margin-top: 20px; background: #000; color: #c19a6b;">Apply to Join the Team</a>
+            </section>
         </div>
-
-        <div class="pillars">
-            <div class="pillar-card">
-                <h3>Scientific Integrity</h3>
-                <p>We use biology, geology, and physics to demonstrate that life's complexity reveals an <span class="highlight-gold">Intelligent Designer</span>, not random processes.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>Campus Awareness</h3>
-                <p>We take the truth to university lecture halls through open-mic debates and Q&A sessions across Nigeria.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>Future Leaders</h3>
-                <p>We are raising a generation of young Nigerian apologists who can confidently answer any skeptic with grace and power.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="image-break"></div>
-
-    <section class="founder-section">
-        <div class="founder-grid">
-            <img src="https://via.placeholder.com/500x600" alt="Wealthy Emeseh" class="founder-img">
-            <div class="founder-info">
-                <span class="founder-tag">Founder & Lead Apologist</span>
-                <h2>Wealthy Emeseh</h2>
-                <p>Wealthy is a student of Mechanical Engineering at Rivers State University. Driven by a passion for Christ and a heart for the truth, he founded <strong>I DID NOT EVOLVE</strong> to equip believers with the scientific and logical tools needed to stand unshakeable in an age of skepticism.</p>
-                <p style="margin-top: 20px;">"Life’s complexity, beauty, and information-rich systems are unmistakable evidence of the God of the Bible. Our goal is that all may come to the knowledge of the truth." (1 Tim 2:4)</p>
+    </main>
+  <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h3>I DID NOT EVOLVE</h3>
+                <p>Defending biblical creation with science, logic & Scripture.</p>
+                <a href="join.html" class="join-btn">Apply Now →</a>
                 
-                <div style="margin-top: 30px;">
-                    <a href="https://wa.me/2347032199329" style="color: #c19a6b; text-decoration: none; font-weight: 700; margin-right: 20px;">WhatsApp Chat →</a>
-                    <a href="mailto:ididnotevolvethetruth@gmail.com" style="color: #c19a6b; text-decoration: none; font-weight: 700;">Email Wealthy →</a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584518368456" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc?mode=wwt" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
+            <div class="footer-right">
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Rivers State, Nigeria</p>
+            </div>
         </div>
-    </section>
-
-    <section class="final-cta">
-        <h2>Ready to Join the Family?</h2>
-        <p>Whether you are a researcher, a student, or a prayer warrior, there is a place for you in this fire.</p>
-        <a href="join.html" class="cta-btn">Apply to Join the Team</a>
-    </section>
-
-    <footer style="padding: 40px; text-align: center; background: #000; font-size: 0.9rem; color: #555;">
-        © 2025 I DID NOT EVOLVE | Port Harcourt, Nigeria
+        <div class="footer-bottom">
+            © 2025 I DID NOT EVOLVE | Powered by Wealthy Web Solutions
+        </div>
     </footer>
 
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
+    </script>
 </body>
-  </html>
+</html>

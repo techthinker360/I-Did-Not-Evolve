@@ -4,188 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podcast | I DID NOT EVOLVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* ==================== GLOBAL SETTINGS ==================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* ==================== UNIVERSAL NAVIGATION ==================== */
-        .navbar {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.95); padding: 15px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; backdrop-filter: blur(15px);
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .logo { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 2.3rem); color: #c19a6b; font-weight: 700; text-decoration: none; }
-        .nav-links.desktop-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .nav-links a:hover { color: #c19a6b; }
-        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
-        .hamburger span { width: 25px; height: 2px; background: #c19a6b; border-radius: 5px; }
-
-        .side-menu { position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100vh; background: #000; z-index: 2001; transition: 0.5s; padding: 40px; }
-        .side-menu.active { left: 0; }
-        .side-links a { display: block; color: white; font-size: 1.4rem; margin: 25px 0; text-decoration: none; font-weight: 600; }
-        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.4s; }
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-
-        /* ==================== PODCAST HERO ==================== */
-        .pod-hero {
-            height: 70vh; min-height: 500px;
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.5), #0a0a0a), url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3') center/cover;
-            padding: 80px 20px 0;
-        }
-        .pod-hero-content { max-width: 800px; }
-        .pod-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); color: #c19a6b; margin-bottom: 15px; }
-        .pod-hero p { font-size: 1.3rem; color: #ccc; margin-bottom: 30px; }
-
-        /* ==================== PLATFORM BOXES ==================== */
-        .platform-strip {
-            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;
-        }
-        .platform-link {
-            padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700;
-            display: flex; align-items: center; gap: 10px; transition: 0.3s;
-            font-size: 0.9rem;
-        }
-        .spotify { background: #1DB954; color: #000; }
-        .apple { background: #fff; color: #000; }
-        .platform-link:hover { transform: scale(1.05); opacity: 0.9; }
-
-        /* ==================== EPISODE PREVIEW (COMING SOON) ==================== */
-        .episode-section { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-family: 'Playfair Display'; font-size: 2.5rem; color: #c19a6b; }
-
-        .episode-card {
-            background: #111; border-radius: 20px; padding: 30px; border: 1px solid #222;
-            display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 30px;
-            margin-bottom: 20px; transition: 0.3s;
-        }
-        .episode-card:hover { border-color: #c19a6b; background: #151515; }
-        .ep-cover { width: 150px; height: 150px; border-radius: 12px; background: #222; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #444; }
-        .ep-info h3 { font-family: 'Playfair Display'; font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
-        .ep-info p { color: #888; font-size: 0.95rem; }
-        
-        .play-btn {
-            width: 60px; height: 60px; border-radius: 50%; background: #c19a6b;
-            display: flex; align-items: center; justify-content: center; color: #000;
-            text-decoration: none; font-size: 1.5rem; transition: 0.3s;
-        }
-        .play-btn:hover { background: #fff; transform: rotate(15deg); }
-
-        /* ==================== FOOTER ==================== */
-        .footer { padding: 60px 20px; background: #000; border-top: 1px solid #1a1a1a; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
-        .footer-right a { color: #aaa; text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; margin-top: 40px; padding-top: 30px; font-size: 0.85rem; color: #555; }
-
-        @media (max-width: 768px) {
-            .episode-card { grid-template-columns: 1fr; text-align: center; justify-items: center; }
-            .ep-cover { width: 120px; height: 120px; }
-            .navbar { padding: 15px 20px; }
-            .desktop-links { display: none; }
-            .hamburger { display: flex; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <nav class="navbar">
         <a href="index.html" class="logo">I DID NOT EVOLVE</a>
-        <ul class="nav-links desktop-links">
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="podcast.html" style="color:#c19a6b">Podcast</a></li>
             <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="hamburger" id="openMenu"><span></span><span></span><span></span></div>
     </nav>
 
-    <div class="side-menu" id="sideMenu">
-        <div class="side-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="podcast.html">Podcast</a>
-            <a href="resources.html">Resources</a>
-            <a href="join.html" style="color:#c19a6b">Join The Team →</a>
-        </div>
-    </div>
-    <div class="menu-overlay" id="overlay"></div>
-
-    <header class="pod-hero">
-        <div class="pod-hero-content">
-            <h1>The Audio Archive</h1>
-            <p>Taking the creation-evolution debate into your ears. Available wherever you listen.</p>
+    <main class="page-container">
+        <div class="main-card">
             
-            <div class="platform-strip">
-                <a href="https://open.spotify.com/user/YOUR_SPOTIFY_ID" target="_blank" class="platform-link spotify">
-                    <span>Spotify</span>
-                </a>
-                <a href="https://podcasts.apple.com" target="_blank" class="platform-link apple">
-                    <span>Apple Podcasts</span>
-                </a>
-            </div>
-        </div>
-    </header>
+            <header class="page-hero">
+                <h1>The Audio Archive</h1>
+                <p class="hero-subtitle">Taking the creation-evolution debate into your ears.</p>
+                
+                <div class="platform-strip">
+                    <a href="#" target="_blank" class="platform-link spotify">
+                        <i class="fab fa-spotify"></i> Spotify
+                    </a>
+                    <a href="#" target="_blank" class="platform-link apple">
+                        <i class="fab fa-apple"></i> Apple Podcasts
+                    </a>
+                </div>
+            </header>
 
-    <section class="episode-section">
-        <div class="section-header">
-            <h2>Latest Episodes</h2>
-            <p style="color: #666; margin-top: 10px;">New episodes coming soon. Subscribe to stay updated.</p>
-        </div>
+            <section class="page-content">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="font-family: 'Playfair Display'; color: #c19a6b;">Latest Episodes</h2>
+                    <p style="color: #666;">Subscribe to stay updated on the latest debates and teachings.</p>
+                </div>
 
-        <div class="episode-card">
-            <div class="ep-cover">EP 01</div>
-            <div class="ep-info">
-                <h3>The Nigerian Campus Debate</h3>
-                <p>An introduction to the mission of I DID NOT EVOLVE and why students are questioning the status quo.</p>
-            </div>
-            <a href="https://open.spotify.com" target="_blank" class="play-btn">▶</a>
-        </div>
+                <div class="episode-list">
+                    <div class="episode-card">
+                        <div class="ep-cover">EP 01</div>
+                        <div class="ep-info">
+                            <h3>The Nigerian Campus Debate</h3>
+                            <p>An introduction to the mission of I DID NOT EVOLVE and why students are questioning the evolutionary status quo in our universities.</p>
+                        </div>
+                        <a href="#" class="play-circle"><i class="fas fa-play"></i></a>
+                    </div>
 
-        <div class="episode-card">
-            <div class="ep-cover">EP 02</div>
-            <div class="ep-info">
-                <h3>Entropy and The Creator</h3>
-                <p>Discussing the second law of thermodynamics and its implications for the origin of life.</p>
-            </div>
-            <a href="https://open.spotify.com" target="_blank" class="play-btn">▶</a>
-        </div>
-    </section>
+                    <div class="episode-card">
+                        <div class="ep-cover">EP 02</div>
+                        <div class="ep-info">
+                            <h3>Entropy and The Creator</h3>
+                            <p>Discussing the second law of thermodynamics and why complexity requires an intelligent source rather than random chance.</p>
+                        </div>
+                        <a href="#" class="play-circle"><i class="fas fa-play"></i></a>
+                    </div>
 
-    <footer class="footer">
+                    <div class="episode-card" style="opacity: 0.6; border-style: dashed;">
+                        <div class="ep-cover"><i class="fas fa-microphone-lines"></i></div>
+                        <div class="ep-info">
+                            <h3>More Truth Coming Soon</h3>
+                            <p>We are currently recording new sessions. Join our WhatsApp community to be the first to know when they drop.</p>
+                        </div>
+                        <div style="width: 50px;"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-left">
                 <h3>I DID NOT EVOLVE</h3>
-                <p>Equipping Nigerian believers to stand unshakeable on Genesis 1–11.</p>
+                <p>Defending biblical creation with science, logic & Scripture.</p>
+                <a href="join.html" class="join-btn">Apply Now →</a>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584518368456" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCOtWmMrzQCxBkkfKr8X-W4g" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://vm.tiktok.com/ZSHwoRY2uQePm-SBfeh/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://chat.whatsapp.com/JIuwK2x0REJ1VQvrjfP2Wc?mode=wwt" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
             <div class="footer-right">
-                <a href="https://wa.me/2347032199329" target="_blank">📱 +234 703 219 9329</a>
-                <p>🌍 Port Harcourt, Nigeria</p>
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Rivers State, Nigeria</p>
             </div>
         </div>
-        <div class="footer-bottom">© 2025 I DID NOT EVOLVE</div>
+        <div class="footer-bottom">
+            © 2025 I DID NOT EVOLVE | Powered by Wealthy Web Solutions
+        </div>
     </footer>
-
     <script>
-        const openBtn = document.getElementById('openMenu');
-        const sideMenu = document.getElementById('sideMenu');
-        const overlay = document.getElementById('overlay');
-        function toggle() { sideMenu.classList.toggle('active'); overlay.classList.toggle('active'); }
-        openBtn.addEventListener('click', toggle);
-        overlay.addEventListener('click', toggle);
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
     </script>
 </body>
 </html>
