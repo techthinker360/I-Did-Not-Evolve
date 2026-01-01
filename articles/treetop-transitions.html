@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Moral Borrower: Why Atheism Needs God | I DID NOT EVOLVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* ==================== BASE STYLES ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0,0,0,0.95); padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; backdrop-filter: blur(15px);
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.6rem;
+            color: #c19a6b; font-weight: 700; text-decoration: none;
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a {
+            color: white; text-decoration: none; font-weight: 600;
+            font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: #c19a6b; }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: #c19a6b; }
+
+        /* ==================== ARTICLE LAYOUT ==================== */
+        .article-container { max-width: 900px; margin: 80px auto 40px; padding: 0 15px; }
+        .single-article { background: #111; box-shadow: 0 20px 60px rgba(0,0,0,0.8); border-radius: 12px; overflow: hidden; }
+
+        .article-hero {
+            height: 450px; background-size: cover; background-position: center;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; text-align: center; padding: 30px; position: relative;
+        }
+
+        .article-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+        }
+
+        .article-hero h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 6vw, 3.5rem);
+            color: #c19a6b; position: relative; z-index: 1; line-height: 1.2; margin-bottom: 15px;
+        }
+
+        .article-meta { font-size: 1rem; color: #bbb; position: relative; z-index: 1; }
+
+        .article-content { padding: 50px 8%; font-size: 1.15rem; line-height: 1.8; color: #d1d1d1; }
+        .article-content p { margin-bottom: 25px; }
+
+        blockquote {
+            border-left: 3px solid #c19a6b; padding: 20px; margin: 40px 0;
+            background: #181818; font-family: 'Playfair Display', serif;
+            font-style: italic; font-size: 1.3rem;
+        }
+
+        .back-resources {
+            display: inline-block; margin-top: 20px; color: #c19a6b;
+            text-decoration: none; font-weight: 700; transition: 0.3s;
+        }
+        .back-resources:hover { color: #fff; transform: translateX(-5px); }
+
+        /* ==================== QUESTION BOX ==================== */
+        .question-section {
+            margin-top: 50px; padding: 30px; background: #181818;
+            border: 1px dashed #c19a6b; border-radius: 8px; text-align: center;
+        }
+        .question-section h4 { font-family: 'Playfair Display', serif; color: #c19a6b; font-size: 1.4rem; margin-bottom: 10px; }
+        .question-section p { font-size: 0.95rem; color: #aaa; margin-bottom: 15px; }
+        .ask-link {
+            display: inline-flex; align-items: center; gap: 8px; color: #fff;
+            text-decoration: none; font-weight: 700; text-transform: uppercase;
+            font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s;
+        }
+        .ask-link:hover { color: #c19a6b; }
+
+        /* ==================== FOOTER ==================== */
+        .footer { background: #000; padding: 60px 20px 30px; border-top: 1px solid #222; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-left h3 { color: #c19a6b; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        .join-btn {
+            display: inline-block; margin-top: 15px; color: #c19a6b; border: 1px solid #c19a6b;
+            padding: 8px 18px; text-decoration: none; transition: 0.3s;
+        }
+        .join-btn:hover { background: #c19a6b; color: #000; }
+        .footer-right a { color: #888; text-decoration: none; display: block; margin-bottom: 8px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 0.8rem; color: #444; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed; right: -100%; top: 0; height: 100vh; width: 70%;
+                background: #111; flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.4s;
+            }
+            .nav-links.active { right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="logo">I DID NOT EVOLVE</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../podcast.html">Podcast</a></li>
+            <li><a href="../resources.html">Resources</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+ <main class="article-container">
+        <article class="single-article">
+            <header class="article-hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?q=80&w=2070');">
+                <h1>Treetop Transitions? The Shifting Story of Bipedalism</h1>
+                <p class="article-meta">By Wealthy Emeseh • December 30, 2025 • 4 min read</p>
+            </header>
+
+            <div class="article-content">
+                <p>The evolutionary narrative has shifted once again. For decades, we were told that humans learned to walk upright as a response to moving out of the forests and onto the open savannah. But that theory has been quietly retired. The new claim? We began walking on two legs while still living in the trees.</p>
+                
+                <p>This "new discovery" comes from observing chimpanzees in Tanzania who occasionally stand upright while navigating thin branches. From this fleeting behavior, researchers suggest our ancestors practiced bipedalism in the canopy before ever touching the ground. But a chimp balancing for a few seconds doesn’t make it a proto-human; it makes it a chimp.</p>
+
+                <blockquote>
+                    “A chimp on two legs is not an ancestor; it is a chimp being a chimp.”
+                </blockquote>
+                
+                
+
+                <p>What is truly revealing is how often the "settled science" of evolution is rewritten. The fossils haven't changed. The data hasn't changed. Only the stories morph to keep the theory alive. Miocene fossils look like apes because they *are* apes. There is no biological need to invent imaginary transitional forms.</p>
+
+                <p>The biblical account remains the only consistent explanation. Scripture tells us man was created in God’s image—upright and fully human from the first breath. Apes were created separately, perfectly designed for their environments. No ambiguity, no missing links, and no need for a new story every ten years.</p>
+
+                <div class="question-section">
+                    <h4>Have a Question?</h4>
+                    <p>Confused about the latest "missing link" news? Let's discuss it.</p>
+                    <a href="../contact.html" class="ask-link"><i class="fas fa-question-circle"></i> Ask a Question →</a>
+                </div>
+
+                <a href="../resources.html" class="back-resources">← Back to Resources</a>
+            </div>
+        </article>
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h3>I DID NOT EVOLVE</h3>
+                <p>Defending biblical creation with science, logic & Scripture.<br>Equipping Nigerian believers to stand unshakeable on Genesis 1–11.</p>
+                <a href="../join.html" class="join-btn">Apply Now →</a>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:ididnotevolvethetruth@gmail.com">📧 ididnotevolvethetruth@gmail.com</a>
+                <a href="https://wa.me/2347032199329">📱 +234 703 219 9329</a>
+                <p>🌍 Port Harcourt, Rivers State, Nigeria</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 I DID NOT EVOLVE | Powered by Wealthy Web Solutions
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
